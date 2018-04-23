@@ -1,0 +1,45 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    x:Class="SaveWpfGridState.MainWindow"
+    Title="MainWindow"
+    Height="350" Width="525" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+            <Button Content="Refresh Data" Name="btnRefreshData" Click="btnRefreshData_Click"  />
+        </StackPanel>
+
+        <dxg:GridControl Grid.Row="1" Name="grdMaster" ItemsSource="{Binding Data}">
+
+            <dxg:GridControl.DetailDescriptor>
+                <dxg:DataControlDetailDescriptor ItemsSourceBinding="{Binding ChildData}">
+                    <dxg:GridControl x:Name="grdDetail">
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn FieldName="id" x:Name="colidChild" Visible="False" VisibleIndex="0"/>
+                            <dxg:GridColumn FieldName="ChildDescription" x:Name="colChildDescription" VisibleIndex="0" />
+                        </dxg:GridControl.Columns>
+                        <dxg:GridControl.View>
+                            <dxg:TableView x:Name="vwChild" AutoWidth="True" ShowGroupPanel="False" NavigationStyle="Row"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </dxg:DataControlDetailDescriptor>
+            </dxg:GridControl.DetailDescriptor>
+
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="id" x:Name="colidMaster" Visible="False"/>
+                <dxg:GridColumn FieldName="MasterDescription" x:Name="colMasterDescription" VisibleIndex="0" />
+                <dxg:GridColumn FieldName="GroupField" x:Name="colGroupField" VisibleIndex="1" GroupIndex="0" />
+            </dxg:GridControl.Columns>
+
+            <dxg:GridControl.View>
+                <dxg:TableView x:Name="vwMaster" AutoWidth="True" NavigationStyle="Row"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</Window>
