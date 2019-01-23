@@ -152,7 +152,7 @@ Namespace SaveWpfGridState
         End Sub
         Private Sub ExpandGroupRow(ByVal rowHandle As Integer, ByVal infoList As List(Of GroupInfo))
             Dim value = gridControl.GetGroupRowValue(rowHandle)
-            Dim info = infoList.Find(Function(x) x.Value.Equals(value))
+            Dim info = infoList.Find(Function(x) Equals(x.Value, value))
             If info Is Nothing Then
                 Return
             End If
@@ -237,7 +237,7 @@ Namespace SaveWpfGridState
         End Function
         Private Function FindGroupRowHandle(ByVal rowHandle As Integer, ByVal level As Integer) As Integer
             Dim value = gridControl.GetGroupRowValue(rowHandle)
-            If Not value.Equals(focusedGroupValues(level)) Then
+            If Not Equals(value, focusedGroupValues(level)) Then
                 Return DataControlBase.InvalidRowHandle
             End If
             If focusedGroupValues.Count - 1 <> level Then
