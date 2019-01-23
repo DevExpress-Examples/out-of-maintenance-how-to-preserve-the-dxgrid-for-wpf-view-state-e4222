@@ -5,11 +5,21 @@
 * [MainWindow.xaml.cs](./CS/SaveWpfGridState/MainWindow.xaml.cs) (VB: [MainWindow.xaml](./VB/SaveWpfGridState/MainWindow.xaml))
 * **[RowStateHelper.cs](./CS/SaveWpfGridState/RowStateHelper.cs) (VB: [RowStateHelper.vb](./VB/SaveWpfGridState/RowStateHelper.vb))**
 <!-- default file list end -->
-# How to preserve the DXGrid for WPF view state
+# How to save and restore grid rows' state
 
+<p>In this example, we implemented the <b>RowStateHelper</b> class, which allows you to save and restore the group and master rows state, selection, and the focused row.</p>
 
-<p>This example demonstrates how to save/load the groups and master rows expansion state, selection, focused row and position of the focused row.</p><p>All functionality implemented in custom class named RowStateHelper, that contains methods for performing these operations.</p>
+<p>Below are code snippets demonstrating how to use this class.</p>
 
-<br/>
-
-
+```CS
+var rowStateHelper = new RowStateHelper(grdMaster, "id");
+rowStateHelper.SaveViewInfo();
+// ...
+rowStateHelper.LoadViewInfo();
+```
+```VB
+Dim rowStateHelper = New RowStateHelper(grdMaster, "id")
+rowStateHelper.SaveViewInfo()
+' ...
+rowStateHelper.LoadViewInfo()
+```
