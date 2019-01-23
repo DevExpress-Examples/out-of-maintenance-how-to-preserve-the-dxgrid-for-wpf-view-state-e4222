@@ -142,7 +142,7 @@ namespace SaveWpfGridState {
         }
         void ExpandGroupRow(int rowHandle, List<GroupInfo> infoList) {
             var value = gridControl.GetGroupRowValue(rowHandle);
-            var info = infoList.Find(i => i.Value.Equals(value));
+            var info = infoList.Find(i => Equals(i.Value, value));
             if (info == null)
                 return;
             if (info.IsExpanded)
@@ -217,7 +217,7 @@ namespace SaveWpfGridState {
         }
         int FindGroupRowHandle(int rowHandle, int level) {
             var value = gridControl.GetGroupRowValue(rowHandle);
-            if (!value.Equals(focusedGroupValues[level]))
+            if (!Equals(value, focusedGroupValues[level]))
                 return DataControlBase.InvalidRowHandle;
             if (focusedGroupValues.Count - 1 != level) {
                 for (int i = 0; i < gridControl.GetChildRowCount(rowHandle); i++) {
